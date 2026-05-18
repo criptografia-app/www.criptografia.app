@@ -19,7 +19,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--ink);font-family:'EB Garamond',serif;overflow-x:hidden;}
+body{background:var(--ink);font-family:'EB Garamond',serif;overflow-x:hidden;padding-top:62px;}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
   opacity:.6;}
@@ -45,21 +45,22 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;
   pointer-events:none;
 }
 .hero-nav{
-  position:absolute;top:0;left:0;right:0;
+  position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 32px;z-index:10;
-  background:rgba(6,8,14,.97);
-  border-bottom:2px solid #3a4a60;
-  box-shadow:0 2px 0 rgba(72,96,128,.3), 0 4px 12px rgba(10,14,20,.6);
+  padding:0 48px;height:62px;
+  background:rgba(12,14,20,0.96);
+  border-bottom:1px solid rgba(200,164,72,.30);
+  backdrop-filter:blur(16px);
 }
 .hero-nav-brand{
-  font-family:'Cinzel',serif;font-size:13px;font-weight:700;
-  letter-spacing:5px;color:#dde4ec;text-transform:uppercase;
-  text-shadow:0 1px 3px rgba(0,0,0,.8);
+  font-family:'Cinzel Decorative',serif;font-size:13px;font-weight:700;
+  letter-spacing:0.22em;color:var(--gold);
+  text-transform:uppercase;text-decoration:none;
+  margin-right:28px;
 }
-.hero-nav-links{display:flex;gap:28px;}
+.hero-nav-links{display:flex;gap:24px;}
 .hero-nav-links a{
-  font-family:'Courier Prime',monospace;font-size:9px;letter-spacing:3px;
+  font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.18em;
   text-transform:uppercase;color:#b8c4d0;text-decoration:none;transition:color .2s;
 }
 .hero-nav-links a:hover{color:var(--silver-l);}
@@ -322,6 +323,7 @@ span[data-lang="pt"]{display:none;}
       <a href="cursos.html" data-lang="pt">Cursos</a>
       <a href="irpf.html" data-lang="en">IRPF</a>
       <a href="irpf.html" data-lang="pt">IRPF</a>
+      <a href="nft.html">NFTs</a>
       <a href="mailto:info@criptografia.net">Contact</a>
     </div>
   </nav>
@@ -355,98 +357,130 @@ span[data-lang="pt"]{display:none;}
 <!-- ══ DEEP TECH ══ -->
 <section class="section section-ink" id="deeptech">
   <div class="container">
-    <div class="sec-eyebrow reveal" data-lang="en">Deep Technology · Post-Quantum Security</div>
-    <div class="sec-eyebrow reveal" data-lang="pt">Tecnologia Profunda · Segurança Pós-Quântica</div>
-    <h2 class="sec-title reveal" data-lang="en">Cryptographic<br/>Infrastructure</h2>
-    <h2 class="sec-title reveal" data-lang="pt">Infraestrutura<br/>Criptográfica</h2>
+    <div class="sec-eyebrow reveal" data-lang="en">Deep Technology · AI × Web3 · Post-Quantum Security</div>
+    <div class="sec-eyebrow reveal" data-lang="pt">Tecnologia Profunda · AI × Web3 · Segurança Pós-Quântica</div>
+    <h2 class="sec-title reveal" data-lang="en">Cryptographic<br/>Infrastructure<br/>for the AI-Native Era</h2>
+    <h2 class="sec-title reveal" data-lang="pt">Infraestrutura Criptográfica<br/>para a Era AI-Nativa</h2>
     <div class="sec-rule reveal"></div>
-    <p class="sec-body reveal" data-lang="en">We build quantum-resistant security systems for the post-quantum era — where today's RSA and ECC encryption will no longer protect your data. Our products are built on NIST-standardized CRYSTALS-Dilithium and Kyber algorithms, anchored to physical quantum entropy from IBM Quantum hardware.</p>
-    <p class="sec-body reveal" data-lang="pt">Construímos sistemas de segurança resistentes ao quantum para a era pós-quântica — onde a criptografia RSA e ECC de hoje não mais protegerá seus dados. Nossos produtos são baseados nos algoritmos CRYSTALS-Dilithium e Kyber padronizados pelo NIST, ancorados à entropia quântica física do hardware IBM Quantum.</p>
+    <p class="sec-body reveal" data-lang="en">We build the verifiable compute layer that AI agents, blockchain protocols, and post-quantum security systems depend on — from dedicated RPC infrastructure and zkML inference proofs to quantum-resistant key management. The RPC infrastructure funds it. The zkML and agent layers differentiate it. The PQC research legitimizes it.</p>
+    <p class="sec-body reveal" data-lang="pt">Construímos a camada de computação verificável da qual agentes de IA, protocolos blockchain e sistemas de segurança pós-quântica dependem — desde infraestrutura RPC dedicada e provas de inferência zkML até gerenciamento de chaves resistente ao quantum.</p>
 
     <div class="cards">
       <div class="card card-ink reveal">
-        <div class="badge badge-active">Active</div>
-        <div class="card-title">ENTROPIC</div>
-        <div class="card-sub"><span data-lang="en">Proof of Reality</span><span data-lang="pt">Prova de Realidade</span></div>
-        <div style="margin-bottom:8px;"><a href="https://criptografia.lovable.app/whitepapers/ENTROPIC-CRIPTOGRAFIA_Ecosystem_Whitepaper_V2.pdf" target="_blank" style="display:inline-block;margin-bottom:8px;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:1px;color:rgba(200,164,72,.6);border:1px solid rgba(200,164,72,.2);padding:2px 8px;text-decoration:none;transition:all .2s;" onmouseover="this.style.color='#c8a448';this.style.borderColor='rgba(200,164,72,.5)'" onmouseout="this.style.color='rgba(200,164,72,.6)';this.style.borderColor='rgba(200,164,72,.2)'">Whitepaper V2 ↗</a><a href="https://criptografia.lovable.app/whitepapers/CRIPTOGRAFIA_Ecosystem_Whitepaper_EN.pdf" target="_blank" style="display:inline-block;margin-bottom:8px;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:1px;color:rgba(200,164,72,.6);border:1px solid rgba(200,164,72,.2);padding:2px 8px;text-decoration:none;transition:all .2s;" onmouseover="this.style.color='#c8a448';this.style.borderColor='rgba(200,164,72,.5)'" onmouseout="this.style.color='rgba(200,164,72,.6)';this.style.borderColor='rgba(200,164,72,.2)'">Ecosystem WP ↗</a></div>
-        <p class="card-body" data-lang="en">Quantum-sealed verification defeating AI deepfakes through physical indeterminacy. Soulbound Tokens on zkEVM anchor every identity event to true quantum entropy — making synthetic media mathematically impossible to forge.</p>
-        <p class="card-body" data-lang="pt">Verificação selada quântica que derrota deepfakes de IA através da indeterminância física. Soulbound Tokens em zkEVM ancoram cada evento de identidade à entropia quântica real.</p>
+        <div class="badge badge-active">Launch</div>
+        <div class="card-title" data-lang="en">CRIPTOGRAFIA RPC</div>
+        <div class="card-title" data-lang="pt">CRIPTOGRAFIA RPC</div>
+        <div class="card-sub" data-lang="en">Dedicated Blockchain Node Infrastructure</div>
+        <div class="card-sub" data-lang="pt">Infraestrutura de Nó Blockchain Dedicada</div>
+        <p class="card-body" data-lang="en">The product QuickNode, Alchemy, and Infura are ignoring: Brazilian developers who need dedicated Bitcoin-native nodes, PIX payments, Portuguese support, and Counterparty/XCP. Dedicated Docker containers per client — txindex + addrindex enabled, Ordinals/Stamps/Rare Pepes supported. &lt;10ms LATAM latency. R$200–800/mês via PIX.</p>
+        <p class="card-body" data-lang="pt">O produto que QuickNode, Alchemy e Infura estão ignorando: desenvolvedores brasileiros que precisam de nós dedicados nativos de Bitcoin, pagamentos PIX, suporte em português e Counterparty/XCP. Contêineres Docker dedicados por cliente — txindex + addrindex habilitados, Ordinals/Stamps/Rare Pepes suportados. &lt;10ms de latência LATAM. R$200–800/mês via PIX.</p>
+        <div style="margin-top:12px;"><a href="https://rpc.criptografia.net" target="_blank" style="display:inline-block;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:2px;color:var(--gold-l);border:1px solid rgba(200,164,72,.4);padding:3px 10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(200,164,72,.1)'" onmouseout="this.style.background='transparent'">rpc.criptografia.net ↗</a></div>
+      </div>
+      <div class="card card-ink reveal">
+        <div class="badge badge-dev">Building</div>
+        <div class="card-title" data-lang="en">zkML</div>
+        <div class="card-title" data-lang="pt">zkML</div>
+        <div class="card-sub" data-lang="en">Verifiable AI Inference</div>
+        <div class="card-sub" data-lang="pt">Inferência de IA Verificável</div>
+        <p class="card-body" data-lang="en">Prove a neural network ran correctly — without trusting the operator. Zero-knowledge proofs applied to ML inference via EZKL atop Circom/SnarkJS circuits. The missing trust layer for AI: DeFi credit protocols, iGaming RNG verification, EU AI Act compliance. Per-proof SaaS + enterprise audit contracts.</p>
+        <p class="card-body" data-lang="pt">Comprove que uma rede neural executou corretamente — sem confiar no operador. Provas de conhecimento zero aplicadas à inferência de ML via EZKL sobre circuitos Circom/SnarkJS. A camada de confiança que falta para IA: protocolos de crédito DeFi, verificação de RNG em iGaming, conformidade com o EU AI Act. SaaS por prova + contratos de auditoria empresarial.</p>
+      </div>
+      <div class="card card-ink reveal">
+        <div class="badge badge-dev">Building</div>
+        <div class="card-title" data-lang="en">CREW Agents</div>
+        <div class="card-title" data-lang="pt">CREW Agents</div>
+        <div class="card-sub" data-lang="en">Blockchain-Native AI Agent Framework</div>
+        <div class="card-sub" data-lang="pt">Framework de Agentes AI Nativo em Blockchain</div>
+        <p class="card-body" data-lang="en">Extending the 13-agent CREW framework to be blockchain-native: agents that hold wallets, monitor on-chain events, and sign transactions autonomously. Built on CRIPTOGRAFIA RPC as execution layer. Compatible with ElizaOS, Olas/Autonolas, and Brian API — the fastest-growing niche in AI×Web3.</p>
+        <p class="card-body" data-lang="pt">Extendendo o framework de 13 agentes CREW para ser nativo em blockchain: agentes que mantêm carteiras, monitoram eventos on-chain e assinam transações autonomamente. Construído sobre CRIPTOGRAFIA RPC como camada de execução. Compatível com ElizaOS, Olas/Autonolas e Brian API — o nicho de crescimento mais rápido em AI×Web3.</p>
       </div>
       <div class="card card-ink reveal">
         <div class="badge badge-active">Active</div>
-        <div class="card-title">QSHaaS</div>
-        <div class="card-sub"><span data-lang="en">Quantum Seeded Hash as a Service</span><span data-lang="pt">Hash Quântico como Serviço</span></div>
-        <div style="margin-bottom:8px;"><a href="https://api.criptografia.net" target="_blank" style="display:inline-block;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:2px;color:var(--gold-l);border:1px solid rgba(200,164,72,.4);padding:3px 10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(200,164,72,.1)'" onmouseout="this.style.background='transparent'">api.criptografia.net ↗</a><a href="https://criptografia.lovable.app/whitepapers/QSHaaS_Whitepaper_PQC_Seeding_Auditability.pdf" target="_blank" style="display:inline-block;margin-bottom:8px;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:1px;color:rgba(200,164,72,.6);border:1px solid rgba(200,164,72,.2);padding:2px 8px;text-decoration:none;transition:all .2s;" onmouseover="this.style.color='#c8a448';this.style.borderColor='rgba(200,164,72,.5)'" onmouseout="this.style.color='rgba(200,164,72,.6)';this.style.borderColor='rgba(200,164,72,.2)'">Whitepaper ↗</a></div>
-        <p class="card-body" data-lang="en">Physical quantum entropy from IBM Quantum — CRYSTALS-Dilithium ready. Verifiable Proof of Entropy certificates. Replaces vulnerable PRNGs for iGaming, fintechs, Web3 and healthcare.</p>
-        <p class="card-body" data-lang="pt">Entropia quântica física do hardware IBM Quantum — compatível com CRYSTALS-Dilithium. Certificados de Prova de Entropia verificáveis. Substitui PRNGs vulneráveis.</p>
-      </div>
-      <div class="card card-ink reveal">
-        <div class="badge badge-stealth">Stealth</div>
-        <div class="card-title">dHSM</div>
-        <div class="card-sub"><span data-lang="en">Decentralized Hardware Security Module</span><span data-lang="pt">HSM Descentralizado</span></div>
-        <div style="margin-bottom:8px;"><a href="https://criptografia.lovable.app/whitepapers/dHSM_Whitepaper_Quantum-Ready_Edition.pdf" target="_blank" style="display:inline-block;margin-bottom:8px;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:1px;color:rgba(200,164,72,.6);border:1px solid rgba(200,164,72,.2);padding:2px 8px;text-decoration:none;transition:all .2s;" onmouseover="this.style.color='#c8a448';this.style.borderColor='rgba(200,164,72,.5)'" onmouseout="this.style.color='rgba(200,164,72,.6)';this.style.borderColor='rgba(200,164,72,.2)'">Whitepaper ↗</a></div>
-        <p class="card-body" data-lang="en">Transforms any wallet into enterprise-grade HSM with Zero-Exposure Protocol. Private keys never leave the encrypted enclave. Quantum-seeded entropy ensures true unpredictability.</p>
-        <p class="card-body" data-lang="pt">Transforma qualquer carteira em HSM empresarial com Protocolo de Zero-Exposição. Chaves privadas nunca saem do enclave criptografado.</p>
+        <div class="card-title" data-lang="en">ENTROPIC</div>
+        <div class="card-title" data-lang="pt">ENTROPIC</div>
+        <div class="card-sub" data-lang="en">AI Content Authenticity Infrastructure</div>
+        <div class="card-sub" data-lang="pt">Infraestrutura de Autenticidade de Conteúdo de IA</div>
+        <div style="margin-bottom:10px;"><a href="https://criptografia.lovable.app/whitepapers/ENTROPIC-CRIPTOGRAFIA_Ecosystem_Whitepaper_V2.pdf" target="_blank" style="display:inline-block;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:2px;color:var(--gold-l);border:1px solid rgba(200,164,72,.4);padding:3px 10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(200,164,72,.1)'" onmouseout="this.style.background='transparent'">Whitepaper V2 ↗</a><a href="https://criptografia.lovable.app/whitepapers/CRIPTOGRAFIA_Ecosystem_Whitepaper_EN.pdf" target="_blank" style="display:inline-block;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:2px;color:var(--gold-l);border:1px solid rgba(200,164,72,.4);padding:3px 10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(200,164,72,.1)'" onmouseout="this.style.background='transparent'">Ecosystem WP ↗</a></div>
+        <p class="card-body" data-lang="en">The on-chain backend for EU AI Act Article 50 compliance, C2PA / Content Credentials, and Adobe Content Authenticity. Quantum-sealed Soulbound Tokens on zkEVM anchor every AI-generated content event to physical quantum entropy — making provenance cryptographically irrefutable.</p>
+        <p class="card-body" data-lang="pt">O backend on-chain para conformidade com o Artigo 50 do EU AI Act, C2PA / Content Credentials e Adobe Content Authenticity. Soulbound Tokens selados quânticamente em zkEVM ancoram cada evento de conteúdo gerado por IA em entropia quântica física — tornando a proveniência irrefutavelmente criptográfica.</p>
       </div>
       <div class="card card-ink reveal">
         <div class="badge badge-active">Active</div>
-        <a href="https://veritasml.lovable.app" target="_blank" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;">VeritasML</div></a>
-        <div class="card-sub"><span data-lang="en">ML Lifecycle Security</span><span data-lang="pt">Segurança do Ciclo ML</span></div>
-        <p class="card-body" data-lang="en">Blockchain-powered provenance, verifiable access control, and immutable audit trails for your ML lifecycle. PQC-hardened — future-proof against quantum attacks.</p>
-        <p class="card-body" data-lang="pt">Proveniência em blockchain, controle de acesso verificável e trilhas de auditoria imutáveis para seu ciclo de ML. Reforçado com PQC.</p>
-      </div>
-      <div class="card card-ink reveal">
-        <div class="badge badge-dev">Development</div>
-        <a href="https://veridius.lovable.app/" target="_blank" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;">VERIDIUS</div></a>
-        <div class="card-sub"><span data-lang="en">Risk Intelligence · AML</span><span data-lang="pt">Inteligência de Risco · AML</span></div>
-        <p class="card-body" data-lang="en">Real-time AML threat analysis combining on-chain and off-chain signals. Cryptographic audit trails for full regulatory compliance — built for Web3-native financial operations.</p>
-        <p class="card-body" data-lang="pt">Análise de ameaças AML em tempo real combinando sinais on-chain e off-chain. Trilhas de auditoria criptográficas para conformidade regulatória total.</p>
+        <div class="card-title" data-lang="en">QSHaaS</div>
+        <div class="card-title" data-lang="pt">QSHaaS</div>
+        <div class="card-sub" data-lang="en">Quantum Seeded Hash as a Service</div>
+        <div class="card-sub" data-lang="pt">Hash Semeado por Quantum como Serviço</div>
+        <div style="margin-bottom:10px;"><a href="https://api.criptografia.net" target="_blank" style="display:inline-block;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:2px;color:var(--gold-l);border:1px solid rgba(200,164,72,.4);padding:3px 10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(200,164,72,.1)'" onmouseout="this.style.background='transparent'">api.criptografia.net ↗</a><a href="https://criptografia.lovable.app/whitepapers/QSHaaS_Whitepaper_PQC_Seeding_Auditability.pdf" target="_blank" style="display:inline-block;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:2px;color:var(--gold-l);border:1px solid rgba(200,164,72,.4);padding:3px 10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(200,164,72,.1)'" onmouseout="this.style.background='transparent'">Whitepaper ↗</a></div>
+        <p class="card-body" data-lang="en">Physical quantum entropy from IBM Quantum hardware — CRYSTALS-Dilithium ready. Verifiable Proof of Entropy certificates. The cash-generating base of the CRIPTOGRAFIA stack: replaces vulnerable PRNGs for iGaming, fintechs, Web3 contracts (VRF replacement), and AI model audit trails.</p>
+        <p class="card-body" data-lang="pt">Entropia quântica física do hardware IBM Quantum — compatível com CRYSTALS-Dilithium. Certificados de Prova de Entropia verificáveis. A base geradora de receita do stack CRIPTOGRAFIA: substitui PRNGs vulneráveis para iGaming, fintechs, contratos Web3 (substituto VRF) e trilhas de auditoria de modelos de IA.</p>
       </div>
       <div class="card card-ink reveal">
         <div class="badge badge-soon">Alpha</div>
-        <a href="https://theconsensus.lovable.app/" target="_blank" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;">Consensus</div></a>
-        <div class="card-sub"><span data-lang="en">Decentralized Multi-Party Agreement</span><span data-lang="pt">Acordo Multi-Partes</span></div>
-        <p class="card-body" data-lang="en">Secure decentralized consensus for threshold signatures, DAO governance, and enterprise decision systems requiring cryptographically verifiable quorum.</p>
-        <p class="card-body" data-lang="pt">Consenso descentralizado seguro para assinaturas de limiar, governança DAO e sistemas de decisão empresariais com quórum verificável.</p>
-      </div>
-
-      <div class="card card-ink reveal">
-        <div class="badge badge-active">Live</div>
-        <a href="https://criptografia.lovable.app/whitepapers/SatoshiSquare-Pitch-EN.pdf" target="_blank" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;">Satoshi Square</div></a>
-        <div class="card-sub"><span data-lang="en">Live P2P Trading Board</span><span data-lang="pt">Mesa de Negociação P2P ao Vivo</span></div>
-        <p class="card-body" data-lang="en">A live P2P trading board that runs on the big screen at crypto meetups. Connect any wallet — MetaMask, WalletConnect, Unisat. NFTs, Bitcoin Ordinals, token balances load instantly. Live order book, NFT marketplace, zero fees — everything settles peer-to-peer in real life. One laptop runs the whole room.</p>
-        <p class="card-body" data-lang="pt">Uma mesa de negociação P2P ao vivo que roda na tela grande em meetups cripto. Conecte qualquer carteira — MetaMask, WalletConnect, Unisat. NFTs, Bitcoin Ordinals e saldos carregam instantaneamente. Livro de ordens ao vivo, marketplace de NFTs, zero taxas — tudo liquidado peer-to-peer na vida real.</p>
+        <a href="https://veridius.lovable.app/" target="_blank" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;" data-lang="en">VERIDIUS</div><div class="card-title" style="cursor:pointer;" data-lang="pt">VERIDIUS</div></a>
+        <div class="card-sub" data-lang="en">AML Intelligence · On-chain + Off-chain</div>
+        <div class="card-sub" data-lang="pt">Inteligência AML · On-chain + Off-chain</div>
+        <p class="card-body" data-lang="en">Real-time AML threat analysis fusing on-chain and off-chain signals via dedicated RPC nodes. PQC-hardened audit trail — quantum-resistant from day one. COAF/BACEN compliance output format. Priced for LATAM at a fraction of Chainalysis enterprise licensing. Public beta Q3 2026.</p>
+        <p class="card-body" data-lang="pt">Análise de ameaças AML em tempo real fundindo sinais on-chain e off-chain via nós RPC dedicados. Trilha de auditoria endurecida por PQC — resistente a quantum desde o primeiro dia. Formato de conformidade COAF/BACEN. Preço para LATAM a uma fração do licenciamento corporativo da Chainalysis. Beta público Q3 2026.</p>
       </div>
       <div class="card card-ink reveal">
-        <div class="badge badge-soon">NFT Project</div>
-        <a href="https://github.com/criptografia-cash/ramadan2030" target="_blank" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;">Ramadan 2030</div></a>
-        <div class="card-sub"><span data-lang="en">NFT Collection · GitHub</span><span data-lang="pt">Coleção NFT · GitHub</span></div>
-        <p class="card-body" data-lang="en">An NFT project by CRIPTOGRAFIA. Blockchain-anchored digital collectibles with cultural and spiritual significance — built on Ethereum. Open source on GitHub.</p>
-        <p class="card-body" data-lang="pt">Um projeto NFT da CRIPTOGRAFIA. Colecionáveis digitais ancorados em blockchain com significado cultural e espiritual — construído no Ethereum. Código aberto no GitHub.</p>
+        <div class="badge badge-active">Active</div>
+        <a href="https://veritasml.lovable.app" target="_blank" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;" data-lang="en">VeritasML</div><div class="card-title" style="cursor:pointer;" data-lang="pt">VeritasML</div></a>
+        <div class="card-sub" data-lang="en">ML Lifecycle Security · EU AI Act Compliance</div>
+        <div class="card-sub" data-lang="pt">Segurança do Ciclo de Vida de ML · Conformidade EU AI Act</div>
+        <p class="card-body" data-lang="en">Blockchain-powered provenance, verifiable access control, and immutable audit trails for your ML lifecycle. Hash a model checkpoint → register on-chain → detect tampering cryptographically → generate a compliance report. Built for Brazilian fintechs under BACEN scrutiny and EU AI Act compliance officers.</p>
+        <p class="card-body" data-lang="pt">Proveniência com blockchain, controle de acesso verificável e trilhas de auditoria imutáveis para seu ciclo de vida de ML. Hash de um checkpoint de modelo → registre on-chain → detecte adulterações criptograficamente → gere um relatório de conformidade. Construído para fintechs brasileiras sob escrutínio do BACEN e para oficiais de conformidade do EU AI Act.</p>
+      </div>
+      <div class="card card-ink reveal">
+        <div class="badge badge-stealth">Stealth</div>
+        <div class="card-title" data-lang="en">dHSM</div>
+        <div class="card-title" data-lang="pt">dHSM</div>
+        <div class="card-sub" data-lang="en">Quantum-Ready Key Management Suite</div>
+        <div class="card-sub" data-lang="pt">Suite de Gestão de Chaves Pronta para Quantum</div>
+        <div style="margin-bottom:10px;"><a href="https://criptografia.lovable.app/whitepapers/dHSM_Whitepaper_Quantum-Ready_Edition.pdf" target="_blank" style="display:inline-block;margin-right:6px;font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:2px;color:var(--gold-l);border:1px solid rgba(200,164,72,.4);padding:3px 10px;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(200,164,72,.1)'" onmouseout="this.style.background='transparent'">Whitepaper ↗</a></div>
+        <p class="card-body" data-lang="en">Transforms any wallet into enterprise-grade HSM with Zero-Exposure Protocol. Packaged with QSHaaS + Consensus as the "Quantum-Ready Key Management Suite" — one enterprise pitch for Brazilian banks under BACEN PQC migration pressure. NIST finalized post-quantum standards in 2024. The timeline is now.</p>
+        <p class="card-body" data-lang="pt">Transforma qualquer carteira em HSM de nível empresarial com Protocolo de Exposição Zero. Empacotado com QSHaaS + Consensus como a “Suite de Gestão de Chaves Pronta para Quantum” — uma proposta empresarial para bancos brasileiros em migração PQC do BACEN. O NIST finalizou padrões pós-quânticos em 2024. O cronograma é agora.</p>
+      </div>
+      <div class="card card-ink reveal">
+        <div class="badge badge-soon">Alpha</div>
+        <a href="https://theconsensus.lovable.app/" target="_blank" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;" data-lang="en">Consensus</div><div class="card-title" style="cursor:pointer;" data-lang="pt">Consensus</div></a>
+        <div class="card-sub" data-lang="en">Decentralized Multi-Party Agreement</div>
+        <div class="card-sub" data-lang="pt">Acordo Multi-partes Descentralizado</div>
+        <p class="card-body" data-lang="en">dHSM handles key storage. QSHaaS provides entropy. Consensus handles multi-party authorization. Together they replace legacy HSM + CA infrastructure for Web3-native organizations — threshold signatures, DAO governance, cryptographically verifiable quorum — at a fraction of Thales/nShield pricing.</p>
+        <p class="card-body" data-lang="pt">dHSM lida com armazenamento de chaves. QSHaaS fornece entropia. Consensus gerencia autorização multiparte. Juntos substituem infraestrutura legada de HSM + CA para organizações Web3-native — assinaturas threshold, governança DAO, quórum criptograficamente verificável — a uma fração do preço da Thales/nShield.</p>
+      </div>
+      <div class="card card-ink reveal">
+        <div class="badge badge-soon">NFT Page</div>
+        <a href="nft.html" style="text-decoration:none;"><div class="card-title" style="cursor:pointer;" data-lang="en">CRIPTOGRAFIA NFT Showcase</div><div class="card-title" style="cursor:pointer;" data-lang="pt">Vitrine NFT da CRIPTOGRAFIA</div></a>
+        <div class="card-sub" data-lang="en">Dedicated NFT products page</div>
+        <div class="card-sub" data-lang="pt">Página dedicada a produtos NFT</div>
+        <p class="card-body" data-lang="en">Explore CRIPTOGRAFIA’s NFT collections, launches, and curated digital art products on a dedicated NFT page. Includes UMBANDA, Timor-Leste, Ramadan 2030 and more.</p>
+        <p class="card-body" data-lang="pt">Explore coleções NFT da CRIPTOGRAFIA, lançamentos e arte digital curada em uma página dedicada. Inclui UMBANDA, Timor-Leste, Ramadan 2030 e mais.</p>
       </div>
     </div>
 
     <div class="reveal">
-      <div class="sec-eyebrow" style="margin-top:8px;" data-lang="en">Post-Quantum Advantage</div>
-      <div class="sec-eyebrow" style="margin-top:8px;" data-lang="pt">Vantagem Pós-Quântica</div>
+      <div class="sec-eyebrow" style="margin-top:8px;" data-lang="en">AI × Web3 Infrastructure Advantage</div>
+      <div class="sec-eyebrow" style="margin-top:8px;" data-lang="pt">Vantagem de Infraestrutura AI × Web3</div>
       <table class="comp-table">
         <thead><tr>
           <th><span data-lang="en">Feature</span><span data-lang="pt">Característica</span></th>
           <th><span data-lang="en">CRIPTOGRAFIA Stack</span><span data-lang="pt">Stack CRIPTOGRAFIA</span></th>
-          <th><span data-lang="en">Classical Crypto</span><span data-lang="pt">Criptografia Clássica</span></th>
+          <th><span data-lang="en">Classical Crypto / Global RPC</span><span data-lang="pt">Cripto Clássica / RPC Global</span></th>
         </tr></thead>
         <tbody>
           <tr><td><span data-lang="en">Entropy Source</span><span data-lang="pt">Fonte de Entropia</span></td><td><span class="check">✦</span> <span data-lang="en">Physical Quantum (IBM)</span><span data-lang="pt">Quântica Física (IBM)</span></td><td><span class="cross">✕</span> <span data-lang="en">Algorithmic PRNG</span><span data-lang="pt">PRNG Algorítmico</span></td></tr>
           <tr><td><span data-lang="en">PQC Resistance</span><span data-lang="pt">Resistência PQC</span></td><td><span class="check">✦</span> Native (Dilithium/Kyber)</td><td><span class="cross">✕</span> RSA/ECC — Vulnerable</td></tr>
-          <tr><td><span data-lang="en">Auditability</span><span data-lang="pt">Auditabilidade</span></td><td><span class="check">✦</span> <span data-lang="en">Verifiable Entropy Proofs</span><span data-lang="pt">Provas de Entropia</span></td><td><span class="cross">✕</span> <span data-lang="en">Limited</span><span data-lang="pt">Limitada</span></td></tr>
-          <tr><td><span data-lang="en">Predictability</span><span data-lang="pt">Previsibilidade</span></td><td><span class="check">✦</span> <span data-lang="en">Impossible</span><span data-lang="pt">Impossível</span></td><td><span class="cross">✕</span> <span data-lang="en">Computationally feasible</span><span data-lang="pt">Computacionalmente viável</span></td></tr>
-          <tr><td><span data-lang="en">On-chain Anchor</span><span data-lang="pt">Âncora On-chain</span></td><td><span class="check">✦</span> zkEVM + SBT</td><td><span class="cross">✕</span> None</td></tr>
+          <tr><td><span data-lang="en">AI Inference Proofs</span><span data-lang="pt">Provas de Inferência de IA</span></td><td><span class="check">✦</span> zkML via EZKL / Circom</td><td><span class="cross">✕</span> No verifiability</td></tr>
+          <tr><td><span data-lang="en">Agent Infrastructure</span><span data-lang="pt">Infraestrutura de Agentes</span></td><td><span class="check">✦</span> Dedicated nodes · ElizaOS/Olas ready</td><td><span class="cross">✕</span> Shared / rate-limited</td></tr>
+          <tr><td><span data-lang="en">LATAM Native</span><span data-lang="pt">Nativo LATAM</span></td><td><span class="check">✦</span> PIX · BRL · PT support · &lt;10ms</td><td><span class="cross">✕</span> USD + IOF · EN only</td></tr>
+          <tr><td><span data-lang="en">On-chain Anchor</span><span data-lang="pt">Âncora On-chain</span></td><td><span class="check">✦</span> zkEVM + SBT + C2PA</td><td><span class="cross">✕</span> None</td></tr>
         </tbody>
       </table>
     </div>
     <div class="divider reveal"><span class="divider-gem">◆</span></div>
   </div>
 </section>
+
 
 <!-- ══ iGAMING ══ -->
 <section class="section section-green" id="igaming">
@@ -565,9 +599,11 @@ span[data-lang="pt"]{display:none;}
         <div class="badge badge-active">B2B</div>
         <div class="card-title" data-lang="en">NFT & Ordinals Minting</div>
         <div class="card-title" data-lang="pt">Criação de NFTs & Ordinals</div>
-        <div class="card-sub">EVM · Bitcoin Ordinals · ERC-721 · ERC-1155</div>
+        <div class="card-sub" data-lang="en">EVM · Bitcoin Ordinals · ERC-721 · ERC-1155</div>
+        <div class="card-sub" data-lang="pt">EVM · Bitcoin Ordinals · ERC-721 · ERC-1155</div>
         <p class="card-body" data-lang="en">End-to-end NFT collection creation — smart contract deployment, metadata, IPFS hosting, marketplace listing. Bitcoin Ordinals inscription via Unisat. Proven stack from Satoshi Square and Ramadan2030. For brands, artists, events and real estate tokenization.</p>
         <p class="card-body" data-lang="pt">Criação de coleções NFT de ponta a ponta — implantação de smart contract, metadata, hospedagem IPFS, listagem em marketplace. Inscrição de Bitcoin Ordinals via Unisat. Stack comprovado pelo Satoshi Square e Ramadan2030. Para marcas, artistas, eventos e tokenização imobiliária.</p>
+        <div style="margin-top:12px;"><a href="nft.html" style="font-family:'Courier Prime',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sepia);text-decoration:none;border-bottom:1px solid var(--gold-l);" data-lang="en">See NFT products →</a><a href="nft.html" style="font-family:'Courier Prime',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--sepia);text-decoration:none;border-bottom:1px solid var(--gold-l);" data-lang="pt">Ver NFTs →</a></div>
       </div>
 
       <div class="card card-paper reveal">
@@ -630,20 +666,6 @@ span[data-lang="pt"]{display:none;}
       </div>
 
       <div class="reveal">
-        <div class="opening-card">
-          <div class="opening-day">MON</div>
-          <div class="opening-sub" data-lang="en">Grand Opening · Greater Curitiba</div>
-          <div class="opening-sub" data-lang="pt">Grande Abertura · Grande Curitiba</div>
-          <div class="opening-addr">
-            Greater Curitiba, Paraná<br/>Brasil<br/><br/>
-            <span data-lang="en">Come visit us — your gateway to digital assets, secure wallets, and certified collectibles in one place.</span>
-            <span data-lang="pt">Venha nos visitar — sua porta de entrada para ativos digitais, carteiras seguras e colecionáveis certificados.</span>
-          </div>
-          <div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(200,164,72,.22);">
-            <div style="font-family:'Courier Prime',monospace;font-size:9px;letter-spacing:2px;color:var(--gold-l);margin-bottom:6px;">CNPJ · 50.219.248/0001-16</div>
-            <a href="mailto:info@criptografia.net" style="font-family:'Courier Prime',monospace;font-size:10px;color:var(--gold-l);text-decoration:none;">info@criptografia.net</a>
-          </div>
-        </div>
         <div style="margin-top:18px;border:1px solid var(--gold-l);padding:18px;background:var(--white);">
           <a href="https://genesiscard.lovable.app/" target="_blank" style="text-decoration:none;"><div style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;cursor:pointer;" data-lang="en">THE GENESIS CARD · LIMITED 1/1000</div></a>
           <a href="https://genesiscard.lovable.app/" target="_blank" style="text-decoration:none;"><div style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;cursor:pointer;" data-lang="pt">THE GENESIS CARD · EDIÇÃO LIMITADA 1/1000</div></a>
