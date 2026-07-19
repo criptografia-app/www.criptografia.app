@@ -7,7 +7,7 @@
 <meta name="description" content="Deep Tech cryptographic security, iGaming quantum randomness, and blockchain crypto services in Curitiba and Greater Curitiba, Brazil."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Courier+Prime:wght@400;700&family=Chakra+Petch:wght@400;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{
   --ink:#0e1218;--paper:#e8e4d8;--paper-mid:#cec9b8;--paper-dk:#b8b0a0;
@@ -146,6 +146,40 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;
 .scroll-cue svg{width:15px;stroke:var(--gold-l);}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(5px);}}
 @media(max-width:600px){.hero-nav-links{display:none;}.hero-contact-strip{flex-direction:column;}.hero-contact-item{border-right:none;border-bottom:1px solid rgba(200,164,72,.2);}}
+
+/* LED ticker tape — ported from fleet-core (3 live strips) */
+.ticker{position:relative;overflow:hidden;border-bottom:1px solid rgba(120,140,160,.28);background:#04060a;height:34px;display:flex;align-items:center;
+  box-shadow:inset 0 0 30px rgba(0,0,0,.6)}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:linear-gradient(90deg,#04060a,transparent)}
+.ticker::after{right:0;background:linear-gradient(270deg,#04060a,transparent)}
+/* JS-driven marquee: uniform px/s across all lanes (no motion sickness), continuous */
+.ticker-track{display:flex;gap:0;white-space:nowrap;will-change:transform}
+/* three stacked lanes */
+.tickers{display:flex;flex-direction:column}
+.ticker.green{height:30px;border-bottom:1px solid rgba(25,245,154,.14);background:linear-gradient(180deg,rgba(25,245,154,.05),#04060a)}
+.ticker.red{height:30px;border-bottom:1px solid rgba(255,77,94,.16);background:linear-gradient(180deg,#04060a,rgba(255,77,94,.05))}
+.ticker.green::before{background:linear-gradient(90deg,#04060a,transparent)}
+.ticker.green::after{background:linear-gradient(270deg,#04060a,transparent)}
+.ticker.red::before{background:linear-gradient(90deg,#04060a,transparent)}
+.ticker.red::after{background:linear-gradient(270deg,#04060a,transparent)}
+.ticker.green .tk{border-right-color:rgba(25,245,154,.1)}
+.ticker.red .tk{border-right-color:rgba(255,77,94,.1)}
+.ticker.green .tk .sym,.ticker.green .tk .px{color:#9be9c8}
+.ticker.red .tk .sym,.ticker.red .tk .px{color:#e9a3ac}
+.ticker.gold{height:30px;border-bottom:1px solid rgba(247,201,72,.18);background:linear-gradient(180deg,rgba(247,201,72,.05),#04060a)}
+.ticker.gold::before{background:linear-gradient(90deg,#04060a,transparent)}
+.ticker.gold::after{background:linear-gradient(270deg,#04060a,transparent)}
+.ticker.gold .tk{border-right-color:rgba(247,201,72,.1)}
+.ticker.gold .tk .sym{color:#F7C948}
+.ticker.gold .tk .sug{color:#ffe9a8;font-weight:600;text-shadow:0 0 8px rgba(247,201,72,.5)}
+.ticker.gold .tk .news{color:#6b7684}
+.ticker.gold .tk .tag{font-size:10px;color:#F7C948;background:none;padding:0;font-family:'Chakra Petch';font-weight:700;letter-spacing:1px}
+.tk{display:inline-flex;align-items:center;gap:9px;padding:0 22px;border-right:1px solid rgba(120,140,160,.1);font-family:'Spline Sans Mono';font-size:12.5px;letter-spacing:.5px}
+.tk .sym{font-family:'Chakra Petch';font-weight:700;color:#d6e0e6;letter-spacing:1px}
+.tk .px{color:#6b7684}
+.tk .chg{font-weight:600;display:inline-flex;align-items:center;gap:3px;text-shadow:0 0 8px currentColor}
+.tk .chg.up{color:#19f59a} .tk .chg.down{color:#ff4d5e} .tk .chg.flat{color:#3d4550;text-shadow:none}
 
 /* SECTIONS */
 .section{padding:80px 24px;position:relative;}
@@ -353,6 +387,13 @@ span[data-lang="pt"]{display:none;}
     <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5"><path d="M3 7l7 7 7-7"/></svg>
   </div>
 </section>
+
+<!-- ══ MARKET TICKER — 3 live LED strips (green gainers / red losers / gold signals) ══ -->
+<div class="tickers" aria-label="Market ticker">
+  <div class="ticker green"><div class="ticker-track" id="tapeUp"></div></div>
+  <div class="ticker red"><div class="ticker-track" id="tapeDn"></div></div>
+  <div class="ticker gold"><div class="ticker-track" id="tapeGold"></div></div>
+</div>
 
 <!-- ══ DEEP TECH ══ -->
 <section class="section section-ink" id="deeptech">
@@ -760,6 +801,84 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 });
 
 setLang('en');
+
+/* ══ MARKET TICKER — 3 live LED strips (ported from fleet-core) ══ */
+(function(){
+  var el=function(id){return document.getElementById(id);};
+  var fmt=function(p){return Number(p).toLocaleString('en-US',{maximumFractionDigits:p<10?4:2});};
+  var _fpx=function(p){return p<0.01?p.toExponential(2):fmt(p);};
+
+  /* Dual LED ticker tapes — green gainers, red losers */
+  function tkItem(sym,px,chg,unit){
+    var up=chg>=0;var arrow=up?'▲':'▼';
+    var pxs=px!=null?'<span class="px">$'+px+'</span>':'';
+    return '<span class="tk"><span class="sym">'+sym+'</span>'+pxs+'<span class="chg '+(up?'up':'down')+'">'+arrow+' '+(up?'+':'')+chg.toFixed(unit==='%'?2:3)+unit+'</span></span>';
+  }
+  var movers={gainers:[],losers:[]};
+  var newsItems=[];
+  function buildTicker(){
+    // GREEN = top-20 market gainers · RED = top-20 losers (Binance 24h, market-wide)
+    var gu=movers.gainers.length?movers.gainers.map(function(m){return tkItem(m.sym,_fpx(m.px),m.chg,'%');}).join(''):'<span class="tk"><span class="sym">loading gainers…</span></span>';
+    var gd=movers.losers.length?movers.losers.map(function(m){return tkItem(m.sym,_fpx(m.px),m.chg,'%');}).join(''):'<span class="tk"><span class="sym">loading losers…</span></span>';
+    el('tapeUp').innerHTML=gu+gu;
+    el('tapeDn').innerHTML=gd+gd;
+
+    // GOLD = buying opportunities: strong momentum pairs + news
+    var gold=[];
+    for(var i=0;i<movers.gainers.slice(0,12).length;i++){var m=movers.gainers[i];gold.push('<span class="tk"><span class="tag">LONG</span><span class="sug">▲ '+m.sym+'/USDT <small style="opacity:.6">+'+m.chg.toFixed(1)+'%</small></span></span>');}
+    for(var j=0;j<movers.losers.slice(0,6).length;j++){var l=movers.losers[j];gold.push('<span class="tk"><span class="tag">SHORT</span><span class="sug">▼ '+l.sym+'/USDT <small style="opacity:.6">'+l.chg.toFixed(1)+'%</small></span></span>');}
+    for(var k=0;k<newsItems.slice(0,8).length;k++){var n=newsItems[k];gold.push('<span class="tk"><span class="tag" style="color:#8a8a8a">NEWS</span><span class="news">'+n.title+(n.source?' <small style="color:#3d4550">· '+n.source+'</small>':'')+'</span></span>');}
+    var g=gold.length?gold.join(''):'<span class="tk"><span class="sym">scanning setups…</span></span>';
+    el('tapeGold').innerHTML=g+g;
+  }
+  // market-wide top movers (Binance 24h ticker, keyless, CORS-ok)
+  async function fetchMovers(){
+    try{
+      var d=await(await fetch('https://api.binance.com/api/v3/ticker/24hr',{cache:'no-store'})).json();
+      var rows=(d||[]).filter(function(x){return x.symbol.endsWith('USDT')&&!/(UP|DOWN|BULL|BEAR|USDC|FDUSD|TUSD)USDT$/.test(x.symbol)&&parseFloat(x.quoteVolume)>3e6;})
+        .map(function(x){return {sym:x.symbol.slice(0,-4),chg:parseFloat(x.priceChangePercent),px:parseFloat(x.lastPrice)};})
+        .filter(function(x){return isFinite(x.chg)&&isFinite(x.px);});
+      rows.sort(function(a,b){return b.chg-a.chg;});
+      movers.gainers=rows.slice(0,20);
+      movers.losers=rows.slice(-20).reverse();
+      buildTicker();
+    }catch(_){}
+  }
+  // live crypto news (CryptoCompare, keyless, CORS-friendly)
+  async function fetchNews(){
+    try{
+      var r=await fetch('https://min-api.cryptocompare.com/data/v2/news/?lang=EN&limit=15',{cache:'no-store'});
+      var d=await r.json();
+      newsItems=(d.Data||[]).map(function(x){return {title:(x.title||'').slice(0,110),source:(x.source_info&&x.source_info.name)||x.source||''};});
+      buildTicker();
+    }catch(_){}
+  }
+  buildTicker();
+  fetchMovers(); setInterval(fetchMovers,30000);
+  fetchNews(); setInterval(fetchNews,180000);
+
+  // ── LED marquee engine — all lanes at ONE constant speed, continuous scroll ──
+  var LED_SPEED=42; // px/second, identical for every lane
+  var LANES=['tapeUp','tapeDn','tapeGold'];
+  var _off={tapeUp:0,tapeDn:0,tapeGold:0};
+  var _hover=false, _lastT=performance.now();
+  document.addEventListener('mouseover',function(e){ if(e.target.closest('.tickers')) _hover=true; });
+  document.addEventListener('mouseout',function(e){ if(e.target.closest('.tickers')&&!(e.relatedTarget&&e.relatedTarget.closest&&e.relatedTarget.closest('.tickers'))) _hover=false; });
+  function ledFrame(now){
+    var dt=Math.min((now-_lastT)/1000,0.1); _lastT=now;
+    if(!_hover){
+      for(var i=0;i<LANES.length;i++){
+        var t=document.getElementById(LANES[i]); if(!t) continue;
+        var half=(t.scrollWidth/2)||1;
+        var o=_off[LANES[i]]-LED_SPEED*dt;
+        if(o<=-half) o+=half;          // seamless loop (content is duplicated)
+        _off[LANES[i]]=o; t.style.transform='translateX('+o+'px)';
+      }
+    }
+    requestAnimationFrame(ledFrame);
+  }
+  requestAnimationFrame(ledFrame);
+})();
 </script>
 <a href="mailto:info@criptografia.net"
   style="position:fixed;bottom:24px;right:24px;z-index:7000;
