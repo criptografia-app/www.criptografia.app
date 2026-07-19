@@ -125,8 +125,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;
   text-transform:uppercase;color:var(--silver);opacity:.8;white-space:nowrap;
 }
 .hero-services{
-  font-family:'Courier Prime',monospace;font-size:9px;letter-spacing:2px;
+  font-family:'Courier Prime',monospace;font-size:9px;letter-spacing:1.6px;
   text-transform:uppercase;color:rgba(154,164,176,.75);margin-bottom:16px;
+  white-space:nowrap;
 }
 .hero-contact-strip{
   display:inline-flex;gap:0;
@@ -180,6 +181,44 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;
 .tk .px{color:#6b7684}
 .tk .chg{font-weight:600;display:inline-flex;align-items:center;gap:3px;text-shadow:0 0 8px currentColor}
 .tk .chg.up{color:#19f59a} .tk .chg.down{color:#ff4d5e} .tk .chg.flat{color:#3d4550;text-shadow:none}
+
+/* P2P TOKEN DESK — LED-styled desk that ties into the ticker */
+.token-desk{margin:26px 0 10px;border:1px solid rgba(200,164,72,.5);border-radius:5px;overflow:hidden;
+  background:linear-gradient(180deg,#080b11,#04060a);box-shadow:0 14px 44px rgba(0,0,0,.35),inset 0 0 40px rgba(0,0,0,.55);}
+.td-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;
+  border-bottom:1px solid rgba(200,164,72,.2);background:rgba(247,201,72,.04);}
+.td-badge{font-family:'Chakra Petch';font-weight:700;font-size:12px;letter-spacing:2px;color:#F7C948;
+  display:inline-flex;align-items:center;gap:8px;text-shadow:0 0 10px rgba(247,201,72,.4);}
+.td-badge .dot{width:7px;height:7px;border-radius:50%;background:#19f59a;box-shadow:0 0 8px #19f59a;animation:tdPulse 1.6s ease-in-out infinite;}
+@keyframes tdPulse{0%,100%{opacity:1}50%{opacity:.3}}
+.td-live{font-family:'Spline Sans Mono';font-size:9px;letter-spacing:3px;color:#6b7684;text-transform:uppercase;}
+.td-strip{border-bottom:1px solid rgba(200,164,72,.12);}
+.td-body{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;padding:22px 20px;}
+.td-copy h3{font-family:'Chakra Petch';font-weight:700;font-size:19px;letter-spacing:.4px;color:#eef3f6;margin-bottom:10px;}
+.td-copy p{font-family:'EB Garamond',serif;font-size:14.5px;line-height:1.62;color:#a8b2bd;margin-bottom:12px;}
+.td-pairs-title{font-family:'Spline Sans Mono';font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#6b7684;margin:6px 0 10px;}
+.td-pairs{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 14px;}
+.td-pair{display:flex;align-items:center;gap:8px;font-family:'Spline Sans Mono';font-size:12.5px;color:#c3ccd4;
+  padding:5px 0;border-bottom:1px solid rgba(120,140,160,.08);}
+.td-pair .n{color:#3d4550;font-size:10px;min-width:16px;}
+.td-pair .a{color:#9be9c8;font-family:'Chakra Petch';font-weight:700;letter-spacing:.5px;}
+.td-pair .x{color:#F7C948;opacity:.7;}
+.td-pair .b{color:#e9c58a;font-family:'Chakra Petch';font-weight:700;letter-spacing:.5px;}
+.td-actions{display:flex;flex-direction:column;gap:12px;justify-content:center;}
+.td-wa{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:5px;text-decoration:none;
+  background:linear-gradient(180deg,#25D366,#1da851);color:#04120a;transition:.18s;box-shadow:0 6px 20px rgba(37,211,102,.28);}
+.td-wa:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(37,211,102,.45);}
+.td-wa svg{width:26px;height:26px;flex:0 0 auto;fill:#04120a;}
+.td-wa .wt{display:flex;flex-direction:column;line-height:1.25;}
+.td-wa .wt b{font-family:'Chakra Petch';font-weight:700;font-size:14px;letter-spacing:.6px;}
+.td-wa .wt small{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:1px;opacity:.8;}
+.td-visit{display:block;text-align:center;padding:12px 16px;border-radius:5px;text-decoration:none;
+  border:1px solid rgba(200,164,72,.4);background:rgba(247,201,72,.05);color:#F7C948;transition:.18s;}
+.td-visit b{font-family:'Chakra Petch';font-weight:600;font-size:13px;letter-spacing:.5px;}
+.td-visit small{display:block;font-family:'Spline Sans Mono';font-size:10px;letter-spacing:1px;color:#8a939e;margin-top:3px;}
+.td-visit:hover{background:rgba(247,201,72,.12);}
+.td-note{font-family:'Spline Sans Mono';font-size:10px;letter-spacing:1px;color:#6b7684;text-align:center;}
+@media(max-width:700px){.td-body{grid-template-columns:1fr;gap:18px;}.td-pairs{grid-template-columns:1fr;}}
 
 /* SECTIONS */
 .section{padding:80px 24px;position:relative;}
@@ -313,7 +352,7 @@ span[data-lang="pt"]{display:none;}
   .hero-sub{font-size:10px !important;letter-spacing:2px !important;margin-bottom:8px !important;}
   .hero-rule{max-width:260px !important;margin-bottom:8px !important;}
   .hero-rule-text{font-size:7px !important;letter-spacing:1px !important;}
-  .hero-services{font-size:8px !important;letter-spacing:1px !important;margin-bottom:10px !important;line-height:1.6;}
+  .hero-services{font-size:8px !important;letter-spacing:1px !important;margin-bottom:10px !important;line-height:1.6;white-space:normal;}
   .hero-contact-strip{flex-direction:column;width:100%;}
   .hero-contact-item{border-right:none !important;border-bottom:1px solid rgba(200,164,72,.2);font-size:9px !important;padding:7px 12px !important;text-align:center;}
   .hero-contact-item:last-child{border-bottom:none !important;}
@@ -370,9 +409,9 @@ span[data-lang="pt"]{display:none;}
         <span data-lang="en">Blockchain Crypto Services</span>
         <span data-lang="pt">Blockchain Crypto Services</span>
       </div>
-      <div class="hero-rule"><span class="hero-rule-text">Marco Matos, Cryptographer</span></div>
+      <div class="hero-rule"><span class="hero-rule-text">Marco Matos, Digital Assets Broker</span></div>
       <div class="hero-services">
-        Digital Assets &nbsp;·&nbsp; P2P &nbsp;·&nbsp; Cold &amp; Hot Wallets &nbsp;·&nbsp; Hardware Wallets &nbsp;·&nbsp; Paper Wallets &nbsp;·&nbsp; Graded Collectibles
+        Digital Assets &nbsp;·&nbsp; P2P Token Desk &nbsp;·&nbsp; Cold &amp; Hot / Hardware / Paper Wallets &nbsp;·&nbsp; Graded Collectibles
       </div>
       <div class="hero-contact-strip">
         <a href="mailto:info@criptografia.net" class="hero-contact-item">info@criptografia.net</a>
@@ -673,11 +712,56 @@ span[data-lang="pt"]{display:none;}
   <div class="container">
     <div class="sec-eyebrow reveal" data-lang="en">Physical Store · Curitiba &amp; Greater Curitiba · PR</div>
     <div class="sec-eyebrow reveal" data-lang="pt">Loja Física · Curitiba &amp; Grande Curitiba · PR</div>
-    <h2 class="sec-title reveal" data-lang="en">Now Open<br/>in Greater Curitiba</h2>
-    <h2 class="sec-title reveal" data-lang="pt">Agora Aberto<br/>na Grande Curitiba</h2>
+    <h2 class="sec-title reveal" data-lang="en">P2P Token Desk<br/>&amp; OTC</h2>
+    <h2 class="sec-title reveal" data-lang="pt">P2P Token Desk<br/>&amp; OTC</h2>
     <div class="sec-rule reveal"></div>
     <p class="sec-body reveal" data-lang="en">Your local hub for digital asset management, secure crypto hardware, P2P exchange services — and a curated collection of graded collectibles. The only place in the region where blockchain meets certified numismatics, CGC comics, and collector-grade trading cards.</p>
     <p class="sec-body reveal" data-lang="pt">Seu hub local para gestão de ativos digitais, hardware cripto seguro, câmbio P2P — e uma coleção curada de colecionáveis graduados. O único lugar na região onde blockchain encontra numismática certificada, quadrinhos CGC e cards de coleção.</p>
+
+    <!-- ══ P2P TOKEN DESK ══ -->
+    <div class="token-desk reveal">
+      <div class="td-head">
+        <span class="td-badge"><span class="dot"></span>P2P TOKEN DESK</span>
+        <span class="td-live" data-lang="en">Live Market Rates</span>
+        <span class="td-live" data-lang="pt">Cotações ao Vivo</span>
+      </div>
+      <!-- live LED desk rates (shares the ticker engine) -->
+      <div class="ticker green td-strip"><div class="ticker-track" id="tapeDesk"></div></div>
+      <div class="td-body">
+        <div class="td-copy">
+          <h3 data-lang="en">Buy &amp; sell any token — in person or remotely</h3>
+          <h3 data-lang="pt">Compre &amp; venda qualquer token — presencial ou remoto</h3>
+          <p data-lang="en">We attend clients directly and execute buy/sell orders for any token over WhatsApp at live market rates. For larger amounts, schedule a private in-person desk visit.</p>
+          <p data-lang="pt">Atendemos clientes diretamente e executamos ordens de compra/venda de qualquer token pelo WhatsApp com cotações ao vivo. Para valores maiores, agende uma visita presencial ao balcão.</p>
+          <div class="td-pairs-title" data-lang="en">Top 10 Cross-Chain Pairs</div>
+          <div class="td-pairs-title" data-lang="pt">Top 10 Pares Cross-Chain</div>
+          <div class="td-pairs">
+            <div class="td-pair"><span class="n">01</span><span class="a">BTC</span><span class="x">⇄</span><span class="b">ETH</span></div>
+            <div class="td-pair"><span class="n">02</span><span class="a">ETH</span><span class="x">⇄</span><span class="b">SOL</span></div>
+            <div class="td-pair"><span class="n">03</span><span class="a">BTC</span><span class="x">⇄</span><span class="b">SOL</span></div>
+            <div class="td-pair"><span class="n">04</span><span class="a">ETH</span><span class="x">⇄</span><span class="b">BNB</span></div>
+            <div class="td-pair"><span class="n">05</span><span class="a">USDT</span><span class="x">⇄</span><span class="b">USDC</span></div>
+            <div class="td-pair"><span class="n">06</span><span class="a">ETH</span><span class="x">⇄</span><span class="b">AVAX</span></div>
+            <div class="td-pair"><span class="n">07</span><span class="a">ETH</span><span class="x">⇄</span><span class="b">POL</span></div>
+            <div class="td-pair"><span class="n">08</span><span class="a">SOL</span><span class="x">⇄</span><span class="b">USDC</span></div>
+            <div class="td-pair"><span class="n">09</span><span class="a">BTC</span><span class="x">⇄</span><span class="b">USDT</span></div>
+            <div class="td-pair"><span class="n">10</span><span class="a">ETH</span><span class="x">⇄</span><span class="b">ARB</span></div>
+          </div>
+        </div>
+        <div class="td-actions">
+          <a class="td-wa" href="https://wa.me/5548991703924?text=Ol%C3%A1%2C%20quero%20comprar%2Fvender%20tokens%20no%20P2P%20Token%20Desk" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.01c-.24.68-1.42 1.31-1.95 1.36-.5.05-1.13.07-1.83-.11-.42-.13-.96-.31-1.66-.61-2.92-1.26-4.82-4.2-4.97-4.4-.15-.2-1.19-1.58-1.19-3.01s.75-2.14 1.02-2.43c.27-.29.58-.36.78-.36l.56.01c.18.01.42-.07.66.5.24.58.82 2.01.89 2.16.07.15.12.32.02.51-.1.2-.15.32-.29.5-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.2.72-.84.91-1.13.19-.29.39-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.12.07.68-.17 1.36z"/></svg>
+            <span class="wt"><b data-lang="en">Trade via WhatsApp</b><b data-lang="pt">Negociar no WhatsApp</b><small>+55 48 99170-3924</small></span>
+          </a>
+          <a class="td-visit" href="https://wa.me/5548991703924?text=Ol%C3%A1%2C%20quero%20agendar%20uma%20visita%20presencial%20ao%20balc%C3%A3o" target="_blank" rel="noopener">
+            <b data-lang="en">Schedule a private visit</b><b data-lang="pt">Agendar visita presencial</b>
+            <small data-lang="en">recommended for larger amounts</small><small data-lang="pt">recomendado para valores maiores</small>
+          </a>
+          <div class="td-note" data-lang="en">Curitiba &amp; Greater Curitiba · PR</div>
+          <div class="td-note" data-lang="pt">Curitiba &amp; Grande Curitiba · PR</div>
+        </div>
+      </div>
+    </div>
 
     <div class="store-grid">
       <div class="reveal">
@@ -708,10 +792,11 @@ span[data-lang="pt"]{display:none;}
 
       <div class="reveal">
         <div style="margin-top:18px;border:1px solid var(--gold-l);padding:18px;background:var(--white);">
-          <a href="https://genesiscard.lovable.app/" target="_blank" style="text-decoration:none;"><div style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;cursor:pointer;" data-lang="en">THE GENESIS CARD · LIMITED 1/1000</div></a>
-          <a href="https://genesiscard.lovable.app/" target="_blank" style="text-decoration:none;"><div style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;cursor:pointer;" data-lang="pt">THE GENESIS CARD · EDIÇÃO LIMITADA 1/1000</div></a>
-          <p style="font-family:'EB Garamond',serif;font-size:13px;color:var(--sepia);line-height:1.65;" data-lang="en">High-durability PVC cold storage card. ERC-20 compatible. Your physical key to Web3 — collector grade, functional grade.</p>
-          <p style="font-family:'EB Garamond',serif;font-size:13px;color:var(--sepia);line-height:1.65;" data-lang="pt">Cartão de armazenamento frio em PVC de alta durabilidade. Compatível com ERC-20. Sua chave física para o Web3.</p>
+          <a href="https://genesiscard.criptografia.net" target="_blank" style="text-decoration:none;"><div style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;cursor:pointer;" data-lang="en">THE GENESIS CARD · LIMITED 1/1000</div></a>
+          <a href="https://genesiscard.criptografia.net" target="_blank" style="text-decoration:none;"><div style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;cursor:pointer;" data-lang="pt">THE GENESIS CARD · EDIÇÃO LIMITADA 1/1000</div></a>
+          <p style="font-family:'EB Garamond',serif;font-size:13px;color:var(--sepia);line-height:1.65;" data-lang="en">High-durability PVC cold-storage wallet card — a phygital gacha in a foil-sealed booster pack. Universal ERC-20 wallet that works on any EVM network (Ethereum, Base, Arbitrum, Polygon). Scan the front QR to verify the balance, then rip the tamper-evident foil to sweep the private key. Numbered edition of 1,000.</p>
+          <p style="font-family:'EB Garamond',serif;font-size:13px;color:var(--sepia);line-height:1.65;" data-lang="pt">Cartão-carteira de armazenamento frio em PVC de alta durabilidade — um gacha phygital em booster pack lacrado. Carteira ERC-20 universal que funciona em qualquer rede EVM (Ethereum, Base, Arbitrum, Polygon). Escaneie o QR na frente para verificar o saldo e rasgue o lacre metálico para varrer a chave privada. Edição numerada de 1.000.</p>
+          <p style="font-family:'Courier Prime',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);margin-top:10px;">RIP · SCAN · SWEEP</p>
         </div>
       </div>
     </div>
@@ -764,7 +849,7 @@ span[data-lang="pt"]{display:none;}
     <a href="cursos.html" data-lang="pt">Cursos</a>
     <a href="irpf.html">IRPF</a>
   </div>
-  <div class="footer-copy">© 2026 CRIPTOGRAFIA · CNPJ 50.219.248/0001-16 · Marco Matos, Cryptographer</div>
+  <div class="footer-copy">© 2026 CRIPTOGRAFIA · CNPJ 50.219.248/0001-16 · Marco Matos, Digital Assets Broker</div>
 </footer>
 
 <script>
@@ -814,14 +899,21 @@ setLang('en');
     var pxs=px!=null?'<span class="px">$'+px+'</span>':'';
     return '<span class="tk"><span class="sym">'+sym+'</span>'+pxs+'<span class="chg '+(up?'up':'down')+'">'+arrow+' '+(up?'+':'')+chg.toFixed(unit==='%'?2:3)+unit+'</span></span>';
   }
-  var movers={gainers:[],losers:[]};
+  var movers={gainers:[],losers:[],desk:[]};
   var newsItems=[];
+  var DESK_WL=['BTC','ETH','SOL','BNB','XRP','AVAX','POL','ARB','LINK','DOGE','ADA','LTC'];
   function buildTicker(){
     // GREEN = top-20 market gainers · RED = top-20 losers (Binance 24h, market-wide)
     var gu=movers.gainers.length?movers.gainers.map(function(m){return tkItem(m.sym,_fpx(m.px),m.chg,'%');}).join(''):'<span class="tk"><span class="sym">loading gainers…</span></span>';
     var gd=movers.losers.length?movers.losers.map(function(m){return tkItem(m.sym,_fpx(m.px),m.chg,'%');}).join(''):'<span class="tk"><span class="sym">loading losers…</span></span>';
     el('tapeUp').innerHTML=gu+gu;
     el('tapeDn').innerHTML=gd+gd;
+
+    // DESK = live rates for the P2P Token Desk (majors)
+    if(el('tapeDesk')){
+      var dk=movers.desk.length?movers.desk.map(function(m){return tkItem(m.sym,_fpx(m.px),m.chg,'%');}).join(''):'<span class="tk"><span class="sym">loading rates…</span></span>';
+      el('tapeDesk').innerHTML=dk+dk;
+    }
 
     // GOLD = buying opportunities: strong momentum pairs + news
     var gold=[];
@@ -841,6 +933,7 @@ setLang('en');
       rows.sort(function(a,b){return b.chg-a.chg;});
       movers.gainers=rows.slice(0,20);
       movers.losers=rows.slice(-20).reverse();
+      movers.desk=DESK_WL.map(function(sym){return rows.find(function(r){return r.sym===sym;});}).filter(Boolean);
       buildTicker();
     }catch(_){}
   }
@@ -859,8 +952,8 @@ setLang('en');
 
   // ── LED marquee engine — all lanes at ONE constant speed, continuous scroll ──
   var LED_SPEED=42; // px/second, identical for every lane
-  var LANES=['tapeUp','tapeDn','tapeGold'];
-  var _off={tapeUp:0,tapeDn:0,tapeGold:0};
+  var LANES=['tapeUp','tapeDn','tapeGold','tapeDesk'];
+  var _off={tapeUp:0,tapeDn:0,tapeGold:0,tapeDesk:0};
   var _hover=false, _lastT=performance.now();
   document.addEventListener('mouseover',function(e){ if(e.target.closest('.tickers')) _hover=true; });
   document.addEventListener('mouseout',function(e){ if(e.target.closest('.tickers')&&!(e.relatedTarget&&e.relatedTarget.closest&&e.relatedTarget.closest('.tickers'))) _hover=false; });
